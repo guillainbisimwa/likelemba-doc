@@ -1,0 +1,10 @@
+# Downloaded and generated files
+/node_modules/
+/package-lock.json
+/yarn.lock
+/build/
+/docs1/
+/source1/
+
+# Extraneous system files
+.DS_Store
