@@ -3,8 +3,7 @@
 /package-lock.json
 /yarn.lock
 /build/
-/docs1/
-/source1/
+main1.md
 
 # Extraneous system files
 .DS_Store
