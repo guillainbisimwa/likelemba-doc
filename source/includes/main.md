@@ -79,7 +79,7 @@ axios
 
 > Make sure that your API key is located in `token`. In our our case id `*************`
 
-likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: *************`
 
@@ -112,3 +112,73 @@ Remember — if you post successfully, then you gonna have your API key!
 <aside class="warning"> If you faild to signup, you'll get this validation message: <code>
 "msg": "Account Already exist"
 </code></aside>
+
+## login by Phone
+
+> login an existing user - get token from here
+
+```javascript
+import axios from "axios";
+
+const options = {
+  method: "POST",
+  url: "https://likelemba-backend.herokuapp.com/api/login/phone",
+  params: {},
+  headers: {
+    "content-type": "application/json",
+    "role": "customer"
+  },
+  data: {
+   phone: "+243789456123",
+  },
+};
+
+axios
+  .request(options)
+  .then( (response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+   "token": "*****************************",
+   "account": {
+      "roleData": {
+         "customer": "63dbf013d61a9eaaffb4e47f"
+      },
+      "_id": "63dc00a716439caa3a169a08",
+      "pseudo": "GuyL",
+      "name": "Guy",
+      "lastName": "BRODY",
+      "otp": "123456",
+}
+```
+
+> Make sure that your API key is located in `token`. In our our case id `*************`
+
+likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: *************`
+
+This endpoint log in an existing user
+
+### HTTP Request
+
+`POST https://likelemba-backend.herokuapp.com/api/login/phone`
+
+### Query Parameters
+
+| Parameter | Type   | Description                                         |
+| --------- | ------ | --------------------------------------------------- |
+| phone     | string | A phone number. It's must be unique in our database |
+
+<aside class="success">
+Remember — if you post successfully, then you gonna have your API key!
+</aside>
