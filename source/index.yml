@@ -1,0 +1,12 @@
+title: API Reference
+
+language_tabs:
+   - javascript
+
+includes:
+   - main
+   - _errors
+
+search: true
+
+highlight_theme: monokai
