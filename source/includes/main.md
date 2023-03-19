@@ -181,3 +181,67 @@ This endpoint log in an existing user
 <aside class="success">
 Remember — if you post successfully, then you gonna have your API key!
 </aside>
+
+
+## Verify OTP
+
+> OTP code verification
+
+```javascript
+import axios from "axios";
+
+const options = {
+  method: "POST",
+  url: "https://likelemba-backend.herokuapp.com/api/verifyOtp/",
+  params: {},
+  headers: {
+    "content-type": "application/json",
+    "role": "customer"
+  },
+  data: {
+   phone: "+243789456123",
+   otp: "123456"
+  },
+};
+
+axios
+  .request(options)
+  .then( (response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "msg": "Valid OTP"
+}
+```
+
+> Make sure that your API key is located in `token`. In our our case id `*************`
+
+Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: *************`
+
+This endpoint verify OTP code for an existing user
+
+### HTTP Request
+
+`POST https://likelemba-backend.herokuapp.com/api/verifyOtp/`
+
+### Query Parameters
+
+| Parameter | Type   | Description                                         |
+| --------- | ------ | --------------------------------------------------- |
+| phone     | string | A phone number. It's must be unique in our database |
+| otp       | Number |                                                     |
+
+<aside class="success">
+Remember — if you post successfully, then you gonna have a success message!
+</aside>
