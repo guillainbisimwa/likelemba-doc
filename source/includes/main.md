@@ -27,7 +27,7 @@ const options = {
     //socialMediaToken : "",
     guest : true,
     phoneNumber : "+243789456123",
-    otp : 12345,
+    //otp : 12345,
     lang : "fr",
     password : "12345678",
     fingerPrintHash : "#242SDSD7GADSDGASGJN74",
@@ -64,7 +64,6 @@ axios
         "pseudo": "GuyL",
         "name": "Guy",
         "lastName": "BRODY",
-        "otp": "BRODY",
     }
 }
 ```
@@ -99,7 +98,6 @@ This endpoint creates a new user.
 | password              | string | A password                                          |
 | guest                 | Bool   |                                                     |
 | phoneNumber           | string |                                                     |
-| otp                   | Number |                                                     |
 | lang                  | String |  Default 'fr'                                       |
 | fingerPrintHash       | String |                                                     |
 | pseudo                | String |                                                     |
