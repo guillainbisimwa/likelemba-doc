@@ -93,7 +93,7 @@ This endpoint creates a new user.
 | Parameter             | Type   | Description                                         |
 | --------------------- | ------ | --------------------------------------------------- |
 | name                  | string | Name of the user                                    |
-| lastName              | string | Name of the user                                    |
+| lastName              | string | Last Name of the user                               |
 | email                 | string | An adress mail. It's must be unique in our database |
 | password              | string | A password                                          |
 | guest                 | Bool   |                                                     |
@@ -242,4 +242,98 @@ This endpoint verify OTP code for an existing user
 
 <aside class="success">
 Remember — if you post successfully, then you gonna have a success message!
+</aside>
+
+
+# Group
+
+Our API is able to manage Groups and it's memebers
+
+## Add a group
+
+> Add a new group of users
+
+```javascript
+import axios from "axios";
+
+const options = {
+  method: "POST",
+  url: "https://likelemba-backend.herokuapp.com/api/group/add",
+  params: {},
+  headers: {
+    "content-type": "application/json",
+    "role": "customer"
+  },
+  data: {
+    imgProfileUrl: "www.test.me/img.png",
+    groupName: "Humanitarian",
+    visibility: true,
+    currency: "usd",
+    amountContribution: 10,
+    affiliationFee: 1,
+    deadline: "M",
+    precisionDeadline: 1,
+    description: "The Humanitarian to help farmers",
+    author : "45323drg5465df4g6d",
+  },
+};
+
+axios
+  .request(options)
+  .then( (response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "group": {
+        
+    }
+}
+```
+> If you faild to signup, you'll get this :
+
+```json
+{    
+   "success": false,
+   "msg": "Error"
+}
+```
+
+> Make sure that your API key is located in `token`. In our our case id `*************`
+
+Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: *************`
+
+This endpoint adds a new group.
+
+### HTTP Request
+
+`POST https://likelemba-backend.herokuapp.com/api/group/add`
+
+### Query Parameters
+
+| Parameter             | Type   | Description                                         |
+| --------------------- | ------ | --------------------------------------------------- |
+| imgProfileUrl         | string | Name of the user                                    |
+| groupName             | string | Name of the user                                    |
+| visibility            | Bool   | `True` if is Private, `False` if Public             |
+| currency              | string | Can be `usd` or `cdf`                               |
+| amountContribution    | Number |                                                     |
+| affiliationFee        | Number |                                                     |
+| deadline              | String |  Can be on of `D`, `W`, `M` or `Y`                  |
+| precisionDeadline     | Number |                                                     |
+| description           | String |                                                     |
+| author                | String | Id of an existing customer                          |
+
+<aside class="success">
+Remember — if you post successfully, then you gonna save your new group!
 </aside>
