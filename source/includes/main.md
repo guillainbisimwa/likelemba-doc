@@ -122,7 +122,7 @@ import axios from "axios";
 
 const options = {
   method: "POST",
-  url: "https://likelemba-backend.herokuapp.com/api/login/phone",
+  url: "https://likelemba-backend.herokuapp.com/api/login/",
   params: {},
   headers: {
     "content-type": "application/json",
@@ -157,13 +157,12 @@ axios
       "pseudo": "GuyL",
       "name": "Guy",
       "lastName": "BRODY",
-      "otp": "123456",
 }
 ```
 
 > Make sure that your API key is located in `token`. In our our case id `*************`
 
-likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: *************`
 
@@ -171,7 +170,7 @@ This endpoint log in an existing user
 
 ### HTTP Request
 
-`POST https://likelemba-backend.herokuapp.com/api/login/phone`
+`POST https://likelemba-backend.herokuapp.com/api/login/`
 
 ### Query Parameters
 
