@@ -338,7 +338,6 @@ This endpoint adds a new group.
 Remember — if you post successfully, then you gonna save your new group!
 </aside>
 
-
 ## List All groups
 
 > Get all groups
@@ -383,6 +382,62 @@ This endpoint will fecth a ALL GROUPS.
 ### HTTP Request
 
 `GET https://likelemba-backend.herokuapp.com/api/group/all`
+
+<aside class="success">
+Remember — if you get successfully, then you gonna receive a success message and a group ojbect of array
+</aside>
+
+
+## List All groups by Customer
+
+> Get all groups by Customer
+
+
+```javascript
+import axios from "axios";
+
+const options = {
+  method: "GET",
+  url: "https://likelemba-backend.herokuapp.com/api/group/all/ad55854a67f35asfas67",
+  params: {},
+  headers: {
+    "content-type": "application/json",
+  }
+};
+
+axios
+  .request(options)
+  .then( (response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "success": true,
+    "msg": "Groups fetched successfully",
+    "groups": {
+        ...
+    }
+}
+```
+
+This endpoint will fecth a ALL GROUPS.
+
+### HTTP Request
+
+`GET https://likelemba-backend.herokuapp.com/api/group/all/:customer`
+
+### Query Parameters
+
+| Parameter             | Type   | Description                                         |
+| --------------------- | ------ | --------------------------------------------------- |
+| customer              | string |  ID Passed as params                                |
 
 <aside class="success">
 Remember — if you get successfully, then you gonna receive a success message and a group ojbect of array
