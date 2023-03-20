@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang=en>
+   <head>
+      <meta charset=utf-8>
+      <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name=robots content="index, follow">
+      <meta name=description content="API Reference">
+      <title>API Reference</title>
+      <link rel=icon href=images/bookmark.1bbee95b.png>
+      <link href=css/screen.21a86285.css rel=stylesheet media=screen>
+      <link href=css/print.0babe0f0.css rel=stylesheet media=print>
+      <link href=css/highlight-monokai.f7211925.css rel=stylesheet media=screen,print>
+      <script src=js/all.a451ee3a.js></script>
+   </head>
+   <body class="" data-languages="[&#34;javascript&#34;]">
+      <a href=# id=nav-button>
+         <span>NAV <img alt=navbar class=image-navbar src=images/navbar.37b9accb.png></span>
+      </a>
+      <div class=tocify-wrapper>
+         <img alt=logo class=image-logo src=images/logo.15e655c5.png>
+         <div class=lang-selector>
+            <a href=# data-language-name="javascript">javascript</a>
+         </div>
+         <div class=search>
+            <input type=text class=search id=input-search placeholder="Search">
+         </div>
+         <ul class=search-results></ul>
+         <div id=toc></div>
+      </div>
+      <div class=page-wrapper>
+         <div class=dark-box></div>
+         <div class=content>
+            <h1 id="introduction">Introduction</h1>
+            <p>Welcome to the likelemba API! You can use our API to access likelemba API endpoints, which can get informations in our database.</p>
+            <h1 id="authentication">Authentication</h1>
+            <p>Our API is able to support user accounts with each user having the ability managing their own resources. In order to get your API key (token), you need to Signup or login!</p>
+            <h2 id="signup">Signup</h2>
+            <blockquote>
+               <p>Signup a new user - get token from here</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/register&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+    <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>
+  },
+  <span class="hljs-attr">data</span>: {
+    email : <span class="hljs-string">&quot;guy@test.me&quot;</span>,
+    <span class="hljs-comment">//socialMediaToken : &quot;&quot;,</span>
+    guest : <span class="hljs-literal">true</span>,
+    phoneNumber : <span class="hljs-string">&quot;+243789456123&quot;</span>,
+    <span class="hljs-comment">//otp : 12345,</span>
+    lang : <span class="hljs-string">&quot;fr&quot;</span>,
+    password : <span class="hljs-string">&quot;12345678&quot;</span>,
+    fingerPrintHash : <span class="hljs-string">&quot;#242SDSD7GADSDGASGJN74&quot;</span>,
+    pseudo : <span class="hljs-string">&quot;guyL&quot;</span>,
+    name : <span class="hljs-string">&quot;Guy&quot;</span>,
+    lastName : <span class="hljs-string">&quot;BRODY&quot;</span>,
+    imgUrl : <span class="hljs-string">&quot;www.test.me/img.png&quot;</span>,
+  },
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*******************************&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;account&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;email&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;test8@me.com&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;customer&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;roleData&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;customer&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;63dc00a716439caa3a169a08&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;63dc00a716439caa3a169a08&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;pseudo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;GuyL&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Guy&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;lastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;BRODY&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>If you faild to signup, you&#39;ll get this :</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>    
+   <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Account Already exist&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>Make sure that your API key is located in <code>token</code>. In our our case id <code>*************</code></p>
+            </blockquote>
+            <p>Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <p><code>Authorization: *************</code></p>
+            <p>This endpoint creates a new user.</p>
+            <h3 id="http-request">HTTP Request</h3>
+            <p><code>POST https://likelemba-backend.herokuapp.com/api/register</code></p>
+            <h3 id="query-parameters">Query Parameters</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Parameter</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>name</td>
+                     <td>string</td>
+                     <td>Name of the user</td>
+                  </tr>
+                  <tr>
+                     <td>lastName</td>
+                     <td>string</td>
+                     <td>Last Name of the user</td>
+                  </tr>
+                  <tr>
+                     <td>email</td>
+                     <td>string</td>
+                     <td>An adress mail. It&#39;s must be unique in our database</td>
+                  </tr>
+                  <tr>
+                     <td>password</td>
+                     <td>string</td>
+                     <td>A password</td>
+                  </tr>
+                  <tr>
+                     <td>guest</td>
+                     <td>Bool</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>phoneNumber</td>
+                     <td>string</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>lang</td>
+                     <td>String</td>
+                     <td>Default &#39;fr&#39;</td>
+                  </tr>
+                  <tr>
+                     <td>fingerPrintHash</td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>pseudo</td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>imgUrl</td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <aside class="success"> Remember — if you post successfully, then you gonna have your API key! </aside>
+            <aside class="warning"> If you faild to signup, you'll get this validation message: <code>
+"msg": "Account Already exist"
+</code></aside>
+            <h2 id="login-by-phone">login by Phone</h2>
+            <blockquote>
+               <p>login an existing user - get token from here</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/login/&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+    <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>
+  },
+  <span class="hljs-attr">data</span>: {
+   <span class="hljs-attr">phone</span>: <span class="hljs-string">&quot;+243789456123&quot;</span>,
+  },
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*****************************&quot;</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;account&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;roleData&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+         <span class="hljs-attr">&quot;customer&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;63dbf013d61a9eaaffb4e47f&quot;</span>
+      <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;63dc00a716439caa3a169a08&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;pseudo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;GuyL&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Guy&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;lastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;BRODY&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>Make sure that your API key is located in <code>token</code>. In our our case id <code>*************</code></p>
+            </blockquote>
+            <p>Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <p><code>Authorization: *************</code></p>
+            <p>This endpoint log in an existing user</p>
+            <h3 id="http-request-1">HTTP Request</h3>
+            <p><code>POST https://likelemba-backend.herokuapp.com/api/login/</code></p>
+            <h3 id="query-parameters-1">Query Parameters</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Parameter</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>phone</td>
+                     <td>string</td>
+                     <td>A phone number. It&#39;s must be unique in our database</td>
+                  </tr>
+               </tbody>
+            </table>
+            <aside class="success"> Remember — if you post successfully, then you gonna have your API key! </aside>
+            <h2 id="verify-otp">Verify OTP</h2>
+            <blockquote>
+               <p>OTP code verification</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/verifyOtp/&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+    <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>
+  },
+  <span class="hljs-attr">data</span>: {
+   <span class="hljs-attr">phone</span>: <span class="hljs-string">&quot;+243789456123&quot;</span>,
+   <span class="hljs-attr">otp</span>: <span class="hljs-string">&quot;123456&quot;</span>
+  },
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Valid OTP&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>Make sure that your API key is located in <code>token</code>. In our our case id <code>*************</code></p>
+            </blockquote>
+            <p>Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <p><code>Authorization: *************</code></p>
+            <p>This endpoint verify OTP code for an existing user</p>
+            <h3 id="http-request-2">HTTP Request</h3>
+            <p><code>POST https://likelemba-backend.herokuapp.com/api/verifyOtp/</code></p>
+            <h3 id="query-parameters-2">Query Parameters</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Parameter</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>phone</td>
+                     <td>string</td>
+                     <td>A phone number. It&#39;s must be unique in our database</td>
+                  </tr>
+                  <tr>
+                     <td>otp</td>
+                     <td>Number</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <aside class="success"> Remember — if you post successfully, then you gonna have a success message! </aside>
+            <h1 id="group">Group</h1>
+            <p>Our API is able to manage Groups and it&#39;s memebers</p>
+            <h2 id="add-a-group">Add a group</h2>
+            <blockquote>
+               <p>Add a new group of users</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/group/add&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+    <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;customer&quot;</span>
+  },
+  <span class="hljs-attr">data</span>: {
+    <span class="hljs-attr">imgProfileUrl</span>: <span class="hljs-string">&quot;www.test.me/img.png&quot;</span>,
+    <span class="hljs-attr">groupName</span>: <span class="hljs-string">&quot;Humanitarian&quot;</span>,
+    <span class="hljs-attr">visibility</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">currency</span>: <span class="hljs-string">&quot;usd&quot;</span>,
+    <span class="hljs-attr">amountContribution</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">affiliationFee</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">deadline</span>: <span class="hljs-string">&quot;M&quot;</span>,
+    <span class="hljs-attr">precisionDeadline</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;The Humanitarian to help farmers&quot;</span>,
+    author : <span class="hljs-string">&quot;45323drg5465df4g6d&quot;</span>,
+  },
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;group&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>If you faild to signup, you&#39;ll get this :</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>    
+   <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Error&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <blockquote>
+               <p>Make sure that your API key is located in <code>token</code>. In our our case id <code>*************</code></p>
+            </blockquote>
+            <p>Likelemba API expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <p><code>Authorization: *************</code></p>
+            <p>This endpoint adds a new group.</p>
+            <h3 id="http-request-3">HTTP Request</h3>
+            <p><code>POST https://likelemba-backend.herokuapp.com/api/group/add</code></p>
+            <h3 id="query-parameters-3">Query Parameters</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Parameter</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>imgProfileUrl</td>
+                     <td>string</td>
+                     <td>Name of the user</td>
+                  </tr>
+                  <tr>
+                     <td>groupName</td>
+                     <td>string</td>
+                     <td>Name of the user</td>
+                  </tr>
+                  <tr>
+                     <td>visibility</td>
+                     <td>Bool</td>
+                     <td><code>True</code> if is Private, <code>False</code> if Public</td>
+                  </tr>
+                  <tr>
+                     <td>currency</td>
+                     <td>string</td>
+                     <td>Can be <code>usd</code> or <code>cdf</code></td>
+                  </tr>
+                  <tr>
+                     <td>amountContribution</td>
+                     <td>Number</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>affiliationFee</td>
+                     <td>Number</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>deadline</td>
+                     <td>String</td>
+                     <td>Can be on of <code>D</code>, <code>W</code>, <code>M</code> or <code>Y</code></td>
+                  </tr>
+                  <tr>
+                     <td>precisionDeadline</td>
+                     <td>Number</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>description</td>
+                     <td>String</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>author</td>
+                     <td>String</td>
+                     <td>Id of an existing customer</td>
+                  </tr>
+               </tbody>
+            </table>
+            <aside class="success"> Remember — if you post successfully, then you gonna save your new group! </aside>
+            <h2 id="list-all-groups">List All groups</h2>
+            <blockquote>
+               <p>Get all groups</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;GET&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/group/all&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+  }
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Groups fetched successfully&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;groups&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        ...
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <p>This endpoint will fecth a ALL GROUPS.</p>
+            <h3 id="http-request-4">HTTP Request</h3>
+            <p><code>GET https://likelemba-backend.herokuapp.com/api/group/all</code></p>
+            <aside class="success"> Remember — if you get successfully, then you gonna receive a success message and a group ojbect of array </aside>
+            <h2 id="list-all-groups-by-customer">List All groups by Customer</h2>
+            <blockquote>
+               <p>Get all groups by Customer</p>
+            </blockquote>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;GET&quot;</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;https://likelemba-backend.herokuapp.com/api/group/all/ad55854a67f35asfas67&quot;</span>,
+  <span class="hljs-attr">params</span>: {},
+  <span class="hljs-attr">headers</span>: {
+    <span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+  }
+};
+
+axios
+  .<span class="hljs-title function_">request</span>(options)
+  .<span class="hljs-title function_">then</span>( <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">data</span>);
+  })
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
+  });</code></pre>
+            <blockquote>
+               <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;success&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Groups fetched successfully&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;groups&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        ...
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <p>This endpoint will fecth a ALL GROUPS.</p>
+            <h3 id="http-request-5">HTTP Request</h3>
+            <p><code>GET https://likelemba-backend.herokuapp.com/api/group/all/:customer</code></p>
+            <h3 id="query-parameters-4">Query Parameters</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Parameter</th>
+                     <th>Type</th>
+                     <th>Description</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>customer</td>
+                     <td>string</td>
+                     <td>ID Passed as params</td>
+                  </tr>
+               </tbody>
+            </table>
+            <aside class="success"> Remember — if you get successfully, then you gonna receive a success message and a group ojbect of array </aside>
+            <h1 id="errors">Errors</h1>
+            <aside class=error> This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s front matter. Files are included in the order listed. </aside>
+            <p>The Likelemba API uses the following error codes:</p>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Error Code</th>
+                     <th>Meaning</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>400</td>
+                     <td>Bad Request -- The request could not be understood by the server due to malformed syntax.</td>
+                  </tr>
+                  <tr>
+                     <td>401</td>
+                     <td>Unauthorized -- Your API key is wrong.</td>
+                  </tr>
+                  <tr>
+                     <td>403</td>
+                     <td>Forbidden -- The Likelemba requested is hidden for administrators only.</td>
+                  </tr>
+                  <tr>
+                     <td>404</td>
+                     <td>Not Found -- The specified Likelemba could not be found.</td>
+                  </tr>
+                  <tr>
+                     <td>405</td>
+                     <td>Method Not Allowed -- You tried to access a Likelemba with an invalid method.</td>
+                  </tr>
+                  <tr>
+                     <td>406</td>
+                     <td>Not Acceptable -- You requested a format that isn&#39;t JSON.</td>
+                  </tr>
+                  <tr>
+                     <td>410</td>
+                     <td>Gone -- The Likelemba requested has been removed from our servers.</td>
+                  </tr>
+                  <tr>
+                     <td>418</td>
+                     <td>I&#39;m a teapot.</td>
+                  </tr>
+                  <tr>
+                     <td>429</td>
+                     <td>Too Many Requests -- You&#39;re requesting too many Likelembas! Slow down!</td>
+                  </tr>
+                  <tr>
+                     <td>500</td>
+                     <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+                  </tr>
+                  <tr>
+                     <td>503</td>
+                     <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class=dark-box>
+            <div class=lang-selector>
+               <a href=# data-language-name="javascript">javascript</a>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
